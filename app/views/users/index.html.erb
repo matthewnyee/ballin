@@ -1,5 +1,8 @@
-<%= link_to "new User", new_user_path %>
+<h1>Reed College Basketball</h1>
+<p> Thank you for RSVPing before coming to play Reed basketball! Please click on your username to edit your status, or click <a href='/users/new'>here</a> to create a new user.</p>
 
+<%= link_to "Create new user", new_user_path %>
+<br>
 
 <% if @users %>
   <% @users.each do |user| %>
@@ -7,5 +10,9 @@
     <%= link_to "#{user.name}", edit_user_path(user.id) %>
     <br>
     <%= user.status %>
+    <br>
+    <%= link_to "Delete #{user.name}", user_path(user.id), class: 'btn',
+                    method: :delete, data: { confirm: 'Are you sure?' } %>
+    <br>
     <% end %>
 <% end %>
