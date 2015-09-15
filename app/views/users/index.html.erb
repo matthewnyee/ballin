@@ -1,1 +1,11 @@
-testing
+<%= link_to "new User", new_user_path %>
+
+
+<% if @users %>
+  <% @users.each do |user| %>
+    <br>
+    <%= link_to "#{user.name}", edit_user_path(user.id) %>
+    <br>
+    <%= user.status %>
+    <% end %>
+<% end %>

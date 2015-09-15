@@ -1,0 +1,25 @@
+User name is "<%= @user.name %>"
+<br>
+User id = <%= @user.id %>
+<br>
+Current status is '<%= @user.status %>'
+<br>
+
+<form action="/users/<%=@user.id%>" method='post'>
+  <input type="hidden" name="_method" value="PATCH">
+  <!-- input elements -->
+  <input type="radio" name="user[status]" id="rsvp_status_yes" value=:Going>
+  <label for="rsvp_status_yes">Yes</label>
+  <br>
+  <input type="radio" name="user[status]" id="rsvp_status_no" value=:NotGoing>
+  <label for="rsvp_status_no">No</label>
+  <br>
+  <input type="radio" name="user[status]" id="rsvp_status_maybe" value=:MightGo>
+  <label for="rsvp_status_maybe">Maybe?</label>
+  <br>
+  <input type="radio" name="user[status]" id="rsvp_status_default" value=:NoResponse>
+  <label for="rsvp_status_yes">Revert to default (make this the default value???)</label>
+  <br>
+  <br>
+   <input type="submit" value="Change status">
+</form>
