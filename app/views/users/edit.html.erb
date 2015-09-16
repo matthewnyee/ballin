@@ -1,11 +1,10 @@
 <h1> Reed College Basketball </h1>
-User name is "<%= @user.name %>"
-<br>
-User id = <%= @user.id %>
-<br>
-Current status is '<%= @user.status %>'
-<br>
 
+<p class = 'container'> Hi <%= @user.name %>! Please RSVP for the next game ({tomorrow / today / 'on next_game.wday, date'}<%=@next_game%>.</p>
+<br>
+Your current status is '<%= @user.status %>'
+<br>
+<br>
 <form action="/users/<%=@user.id%>" method='post'>
   <input type="hidden" name="_method" value="PATCH">
   <!-- input elements -->
@@ -23,4 +22,11 @@ Current status is '<%= @user.status %>'
   <br>
   <br>
    <input type="submit" value="Change status">
+</form>
+
+<form action="/users/<%=@user.id%>" method='post'>
+  <input type="hidden" name="_method" value="PATCH">
+
+  <input type="text" name="user[name]">
+  <input type="submit" value="edit username">
 </form>
