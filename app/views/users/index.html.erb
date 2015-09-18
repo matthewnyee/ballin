@@ -1,23 +1,33 @@
 <h1>Reed College Basketball</h1>
-<p> Thank you for RSVPing before coming to play Reed basketball! Please click on your username to edit your status, or click <a href='/users/new'>here</a> to create a new user.</p>
-
-<%= link_to "Create new user", new_user_path %>
+<p> Thank you for RSVPing before coming to play Reed basketball! Please click
+  on your username to edit your status, or create a new user by clicking the
+  button below.</p>
+<br>
+<%= link_to "Create new user", new_user_path, class: 'btn btn-default' %>
 <br>
 <br>
+<br>
+<h4> Open gym <%=@next_game_day_name%> (<%=@next_game%>): </h4>
+<div class="table-responsive">
 <table class = 'table table-hover'>
-  <tr>
-    <td> Username </td>
-    <td> Status </td>
-    <td>  </td>
-  </tr>
+  <thead>
+    <tr>
+      <td> <h4> Username </h4> </td>
+      <td> <h4> Status </h4> </td>
+      <td>  </td>
+    </tr>
+  </thead>
   <% if @users %>
     <% @users.each do |user| %>
       <tr>
-      <td> <%= link_to "#{user.name}", edit_user_path(user.id) %> </td>
+      <td> <%= link_to "#{user.name}", edit_user_path(user.id),
+        class: 'btn btn-default' %> </td>
       <td> <%= user.status %> </td>
-      <td> <%= link_to "Delete", user_path(user.id), class: 'btn',
-                  method: :delete, data: { confirm: "Are you sure you want to delete #{user.name}?" } %> </td>
+      <td> <%= link_to "Delete", user_path(user.id), class: 'btn btn-default',
+        method: :delete, data: {
+            confirm: "Are you sure you want to delete #{user.name}?" } %> </td>
       </tr>
     <% end %>
     <% end %>
 </table>
+</div>

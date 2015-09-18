@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   resources :users
 
   # You can have the root of your site routed with "root"
-   root 'users#index'
+  root 'users#index'
+
+  get '/about' => 'users#about'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

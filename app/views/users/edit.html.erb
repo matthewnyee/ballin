@@ -1,32 +1,56 @@
 <h1> Reed College Basketball </h1>
 
-<p class = 'container'> Hi <%= @user.name %>! Please RSVP for the next game ({tomorrow / today / 'on next_game.wday, date'}<%=@next_game%>.</p>
+<p> Hi <%= @user.name %>! Edit your status for the game
+  <%=@next_game_day_name%> (<%=@next_game%>) by selecting one of the buttons, or
+   edit your username in the box below.
+
 <br>
-Your current status is '<%= @user.status %>'
 <br>
-<br>
-<form action="/users/<%=@user.id%>" method='post'>
-  <input type="hidden" name="_method" value="PATCH">
-  <!-- input elements -->
-  <input type="radio" name="user[status]" id="rsvp_status_yes" value=:Going>
-  <label for="rsvp_status_yes">Yes</label>
-  <br>
-  <input type="radio" name="user[status]" id="rsvp_status_no" value=:NotGoing>
-  <label for="rsvp_status_no">No</label>
-  <br>
-  <input type="radio" name="user[status]" id="rsvp_status_maybe" value=:MightGo>
-  <label for="rsvp_status_maybe">Maybe?</label>
-  <br>
-  <input type="radio" name="user[status]" id="rsvp_status_default" value=:NoResponse>
-  <label for="rsvp_status_yes">Revert to default (make this the default value???)</label>
-  <br>
-  <br>
-   <input type="submit" value="Change status">
-</form>
 
 <form action="/users/<%=@user.id%>" method='post'>
   <input type="hidden" name="_method" value="PATCH">
-
-  <input type="text" name="user[name]">
-  <input type="submit" value="edit username">
+    <div class="btn-group" data-toggle="buttons">
+      <% ['yes', 'no', 'maybe', 'NoResponse'].each do |option| %>
+        <!for some reason, couldn't use :symbols for each loop, had to use string>
+        <% if option == @user.status %>
+          <label class="btn btn-default active">
+          <input type="radio" name="user[status]" value="<%=option%>"
+            checked> <%=option%>
+        <% else %>
+          <label class="btn btn-default">
+          <input type="radio" name="user[status]" value="<%=option%>"> <%=option%>
+        <% end %>
+        </label>
+      <% end %>
+    </div>
+    <br>
+    <br>
+  Username: <input type="text" name="user[name]" value="<%=@user.name%>">
+  <br>
+  <br>
+  <input type="submit" class='btn btn-default' value="Submit">
 </form>
+<br>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="btn-group" data-toggle="buttons">
+  <label class="btn btn-default active">
+    <input type="radio" name="options" id="option1" autocomplete="off"
+      checked> Radio 1 (preselected)
+  </label>
+  <label class="btn btn-default">
+    <input type="radio" name="options" id="option2" autocomplete="off"> Radio 2
+  </label>
+  <label class="btn btn-default">
+    <input type="radio" name="options" id="option3" autocomplete="off"> Radio 3
+  </label>
+</div>
